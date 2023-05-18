@@ -3,14 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const data_1 = require("./data");
+const TodoCollection_1 = __importDefault(require("./TodoCollection"));
 const TodoItem_1 = __importDefault(require("./TodoItem"));
-const data = [
-    { id: 1, task: "groceries", complete: true },
-    { id: 2, task: "Study TS", complete: false },
-];
-console.log("My Todo List");
-// 타입 추론기능을 통해서 별다른 타입 지정 없이 가능 (ex: 변수 i,todoItem )
-for (let i = 0; i < data.length; i++) {
-    let todoItem = new TodoItem_1.default(data[i].id, data[i].task, data[i].complete);
-    todoItem.printDetails();
-}
+const sampleTodos = data_1.data.map((item) => new TodoItem_1.default(item.id, item.task, item.complete));
+const myTodoCollection = new TodoCollection_1.default("My Todo List", sampleTodos);
+myTodoCollection.addTodo("Study Js");
+myTodoCollection.addTodo("Meeting Jin");
+myTodoCollection.markComplete(3, true);
+console.log(`${myTodoCollection.userName}`);
+myTodoCollection.todoItems.forEach((item) => item.printDetails());

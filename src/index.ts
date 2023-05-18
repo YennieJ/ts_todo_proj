@@ -1,13 +1,17 @@
+import { data } from "./data";
+import TodoCollection from "./TodoCollection";
 import TodoItem from "./TodoItem";
 
-const data = [
-  { id: 1, task: "groceries", complete: true },
-  { id: 2, task: "Study TS", complete: false },
-];
+const sampleTodos: TodoItem[] = data.map(
+  (item) => new TodoItem(item.id, item.task, item.complete)
+);
 
-console.log("My Todo List");
-// 타입 추론기능을 통해서 별다른 타입 지정 없이 가능 (ex: 변수 i,todoItem )
-for (let i = 0; i < data.length; i++) {
-  let todoItem = new TodoItem(data[i].id, data[i].task, data[i].complete);
-  todoItem.printDetails();
-}
+const myTodoCollection = new TodoCollection("My Todo List", sampleTodos);
+
+myTodoCollection.addTodo("Study Js");
+myTodoCollection.addTodo("Meeting Jin");
+
+myTodoCollection.markComplete(3, true);
+
+console.log(`${myTodoCollection.userName}`);
+myTodoCollection.todoItems.forEach((item) => item.printDetails());
