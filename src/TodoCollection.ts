@@ -3,12 +3,16 @@ import TodoItem from "./TodoItem";
 class TodoCollection {
   private nextId: number = 1;
 
-  constructor(public userName: string, public todoItems: TodoItem[] = []) {}
+  private itemMap: Map<number, TodoItem>;
+
+  constructor(public userName: string, todoItems: TodoItem[] = []) {
+    this.itemMap = new Map<number, TodoItem>();
+    todoItems.forEach((item) => this.itemMap.set(item.id, item));
+  }
 
   // id가 없을수도 있으므로 undefined까지 추가
-  // 타입추론으로
   getTodoById(id: number): TodoItem | undefined {
-    return this.todoItems.find((item) => item.id === id);
+    return this.itemMap.get(id);
   }
 
   addTodo(task: string): number {
@@ -16,8 +20,24 @@ class TodoCollection {
       this.nextId++;
     }
 
-    this.todoItems.push(new TodoItem(this.nextId, task));
+    this.itemMap.set(this.nextId, new TodoItem(this.nextId, task));
     return this.nextId;
+  }
+
+  // includeComplete -> true : 모든 할일 목록 반환
+  // includeComplete -> false : 완료 목록은 제외한 할일 목록 반환
+  getTodoItems(includeComplete: boolean): TodoItem[] {
+    return [...this.itemMap.values()].filter(
+      (item) => includeComplete || !item.complete
+    );
+  }
+
+  removeComplete(): void {
+    this.itemMap.forEach((item) => {
+      if (item.complete) {
+        this.itemMap.delete(item.id);
+      }
+    });
   }
 
   markComplete(id: number, complete: boolean): void {

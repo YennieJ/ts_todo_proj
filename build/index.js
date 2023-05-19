@@ -12,4 +12,7 @@ myTodoCollection.addTodo("Study Js");
 myTodoCollection.addTodo("Meeting Jin");
 myTodoCollection.markComplete(3, true);
 console.log(`${myTodoCollection.userName}`);
-myTodoCollection.todoItems.forEach((item) => item.printDetails());
+myTodoCollection.removeComplte();
+myTodoCollection.getTodoItems(true).forEach((item) => item.printDetails());
+console.log("========================");
+myTodoCollection.getTodoItems(false).forEach((item) => item.printDetails());
