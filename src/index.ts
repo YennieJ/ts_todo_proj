@@ -1,6 +1,6 @@
 import { data } from "./data";
-import TodoCollection from "./TodoCollection";
-import TodoItem from "./TodoItem";
+import TodoCollection from "./service/TodoCollection";
+import TodoItem from "./model/TodoItem";
 
 const sampleTodos: TodoItem[] = data.map(
   (item) => new TodoItem(item.id, item.task, item.complete)
