@@ -151,3 +151,21 @@ function add(firstParam: any, secondParam: any): any {
 add(10, 20);
 add("10", "20");
 ```
+
+### forEach와 map의 차이
+
+```ts
+const nums = [1, 2, 3];
+
+const forEach = [];
+
+nums.forEach((n) => forEach.push(n * 2));
+const map = nums.map((n) => n * 2);
+
+// 결과 값은 같지만, forEach는 반복문을 대체하기 위한 함수이고
+// map은 새로운 배열을 생성하기 위한 고차함수이다.
+
+❌
+const notWorking = nums.forEach((n) => n * 2);
+
+```
