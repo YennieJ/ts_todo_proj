@@ -254,3 +254,96 @@ console.log(tuples); // ['Jin' , 34 , 100 ]
 
 //class 객체를 사용하는 경우가 더 많아서 특별히 많이 사용하진 않음.
 ```
+
+## Generics [1/2]
+
+- 재사용 가능한 클래스, 함수를 만들기 위해 다양한 타입에서 사용 가능 하도록 하는 것이 제네릭(Generics)
+- 제네릭을 이용하면 모든 타입의 객체를 다루면서 객체 타입의 무결성을 유지할 수 있다.
+- 제네릭을 통해 클래스나 함수 내부에서 사용되는 특정 데이터의 타입을 외부에서 지정한다.
+- 제네릭이 적용된 대상(클래스, 함수, 인터페이스)은 선언 시점이 아닌 생성 시점에서 사용하는 타입을 결정한다.
+
+```ts
+class Orange {
+  private name = "Orange";
+  constructor(private brix: number = 0) {}
+
+  getName(): string {
+    return this.name;
+  }
+  getBrix(): number {
+    return this.brix;
+  }
+}
+
+class Box {
+  constructor(private fruit: any = {}) {}
+  getfruit(): any {
+    return this.fruit;
+  }
+}
+
+const box = new Box(new Orange(5));
+console.log(box.getfruit().getName()); // Orange
+console.log(box);
+// Box{ fruit: Orange { brix :5, name: 'Orange'}}
+
+const wrongBox = new Box("Banana"); //compile pass
+console.log(wrongBox.getfruit().getName()); // runtime error
+
+////why////
+// any 타입으로 두었기 때문에 컴파일에서 에러가 나지 않음.
+```
+
+## Generics [2/2]
+
+- 제네릭에 사용되는 파라미터는 타입 파라미터(Type Parameter)라 하며 관용적으로 T를 사용한다.
+- 제네릭에 적용된 대상은 인스턴스화 될 때 지정된 데이터 타입으로 모든 타입 파라미터의 타입이 지정된다.
+- 타입 파라미터는 상속을 통해 특정 타입의 하위 타입으로 제한 할 수 있다.
+
+```ts
+class Orange {
+  private name = "Orange";
+  constructor(private brix: number = 0) {}
+
+  getName(): string {
+    return this.name;
+  }
+  getBrix(): number {
+    return this.brix;
+  }
+}
+
+class Box<T> {
+  constructor(private fruit: T = {}) {}
+  getfruit(): T {
+    return this.fruit;
+  }
+}
+
+const box: Box<Orange> = new Box(new Orange(5));
+console.log(box.getfruit().getName()); // Orange
+console.log(box);
+// Box{ fruit: Orange { brix :5, name: 'Orange'}}
+
+const wrongBox = new Box("Banana"); //compile pass
+console.log(wrongBox.getfruit().getName()); // compile error
+```
+
+## type alias
+
+- 새로운 타입을 정의하는 방법은 type alias 와 interface를 정의하는 두 가지 반식이 있다.
+- typs alias를 이용하면 객체, 공용체,튜플,기본 타입에 타입의 별칭을 생성할 수 있다.
+- type alias도 제네릭의 사용이 가능하며, 스스로 참조하는것도 가능하다.
+
+```ts
+type MyNumber = number;
+const n: MyNumber = 10;
+
+type User = { name: string; age: number };
+const testUser: User = { name: "Lee", age: 30 };
+function printInfo(user: User) {
+  console.log(user.name, user.age);
+}
+
+type Container<T> = { value: T };
+```
