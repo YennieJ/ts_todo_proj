@@ -1,6 +1,8 @@
 {
   "dependencies": {
+    "@types/inquirer": "^9.0.3",
     "concurrently": "^8.0.1",
+    "inquirer": "^9.2.4",
     "nodemon": "^2.0.22",
     "typescript": "^5.0.4"
   },
