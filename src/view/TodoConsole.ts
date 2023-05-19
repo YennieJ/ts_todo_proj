@@ -2,8 +2,9 @@ import { data } from "./../data";
 import * as inquirer from "inquirer";
 import TodoItem from "../model/TodoItem";
 import TodoCollection from "../service/TodoCollection";
+import { Commends } from "../model/Commends";
 
-class Todoconsole {
+class TodoConsole {
   private todoCollection: TodoCollection;
 
   constructor() {
@@ -24,5 +25,23 @@ class Todoconsole {
       .forEach((item) => item.printDetails());
   }
 
-  promptUser(): void {}
+  promptUser(): void {
+    console.clear();
+    this.displayTodoList();
+
+    inquirer
+      .prompt({
+        type: "list",
+        name: "commend",
+        message: "Choses option",
+        choices: Object.values(Commends),
+      })
+      .then((answer) => {
+        if (answer["commend"] !== Commends.Quit) {
+          this.promptUser();
+        }
+      });
+  }
 }
+
+export default TodoConsole;
