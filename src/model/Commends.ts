@@ -1,4 +1,5 @@
 export enum Commends {
   Quit = "Quit",
-  Add = "Add",
+  Toggle = "Show/Hide Completed",
+  Add = "Add New Task",
 }

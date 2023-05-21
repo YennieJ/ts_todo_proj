@@ -4,5 +4,6 @@ exports.Commends = void 0;
 var Commends;
 (function (Commends) {
     Commends["Quit"] = "Quit";
-    Commends["Add"] = "Add";
+    Commends["Toggle"] = "Show/Hide Completed";
+    Commends["Add"] = "Add New Task";
 })(Commends = exports.Commends || (exports.Commends = {}));
