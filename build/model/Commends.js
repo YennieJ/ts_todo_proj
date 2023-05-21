@@ -6,4 +6,6 @@ var Commends;
     Commends["Quit"] = "Quit";
     Commends["Toggle"] = "Show/Hide Completed";
     Commends["Add"] = "Add New Task";
+    Commends["Complete"] = "Complete Task";
+    Commends["Purge"] = "Remove Completed Tasks";
 })(Commends = exports.Commends || (exports.Commends = {}));
