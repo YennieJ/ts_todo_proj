@@ -347,3 +347,36 @@ function printInfo(user: User) {
 
 type Container<T> = { value: T };
 ```
+
+## enum type
+
+- 열거형 타입은 상수들을 관리하기 위한 객체로 상수의 집합을 정의한다.
+- 일반 객체는 속성의 변경을 허용하지만 열거형은 속성의 변경을 허용하지 않는다.
+- 열거형 속성은 기본적으로 숫자, 문자열만 허용한다.
+- 열거형을 이용하면 상수의 수를 제한할 수 있으며 코드의 가독성을 높일 수 있다.
+
+```ts
+const korean = "ko";
+const english = "en";
+const japanese = "ja";
+const chinese = "zh";
+
+type LanguageCode = "ko" | "en" | "ja" | "zh";
+
+const code: LanguageCode = korean;
+
+// type alias는 어떠한 의미인지 유추하기 힘들다
+// 사용자 정의 상수 (const)는 그룹화 하기 어렵다.
+
+enum LanguageCode {
+  korean = "ko",
+  english = "en",
+  japanese = "ja",
+  chinese = "zh",
+}
+
+const code: LanguageCode = LanguageCode.korean;
+
+//리버스 맵핑 ?? 일반적으로 키를 통해서 값을 가져오지만, 이넘은 값을 통해서 키를 가져올 수 있음.
+// const enum 의 경우 리버스 맵핑 즉, 값을 통한 키를 찾을 수 없다.
+```
