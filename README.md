@@ -421,7 +421,7 @@ collection = "TypeScript";
 // collection.split('')은 사용할 수 없음. number[]일 수도 있으니까.
 
 //typeof 연산자를 이용해 사용 가능.
-if (typeof collection === string) {
+if (typeof collection === "string") {
   collection.split("");
 }
 ```
