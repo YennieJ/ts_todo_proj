@@ -390,13 +390,13 @@ const code: LanguageCode = LanguageCode.korean;
 
 ```ts
 interface Rectangle{
-  area:number;
-  color:string;
+  area:number,
+  color:string,
   drawing():void
 }
 interface Line{
-  length:number;
-  color:string;
+  length:number,
+  color:string,
   drawing():void
 }
 
@@ -424,4 +424,76 @@ collection = "TypeScript";
 if (typeof collection === "string") {
   collection.split("");
 }
+```
+
+## Interface [1/2]
+
+- 인터페이스는 여러 타입의 속성으로 이루어진 새로운 타입을 정의하는 방법이다.
+- 인터페이스도 클래스와 마찬가지로 프로퍼티와 메서드를 갖지만 인터페이스를 이용한 인스턴스는 생성할 수 없다.
+- 인터페이스에 정의하는 메서드는 모두 추상메서드며 abstract 키워드를 사용하지 않는다.
+- 인터페이스를 이용하면 변수, 함수, 클래스에 타입을 지정할 수 있다.
+
+```ts
+interface TodoItem {
+  id: number;
+  task: string;
+  complete: boolean;
+}
+
+const todo: TodoItem = {
+  id: 1,
+  task: "Study TypeScript",
+  complete: false,
+};
+
+// 1
+interface SumFunc {
+  (leftNumber: number, rightNumber: number): number;
+}
+
+// 2
+const mySum: SumFunc = function (
+  leftNumber: number,
+  rightNumber: number
+): number {
+  return leftNumber + rightNumber;
+};
+```
+
+## Interface [2/2]
+
+- 인터페이스의 프로퍼티는 선택적 옵션과 읽기 전용 옵션을 지정할 수 있다.
+- 인터페이스에 정의하는 모든 프로퍼티가 필수 요소가 아닌 경우 ? 를 지정하여 선택적 프로퍼티로 지정한다.
+- 인터페이스에 정의하는 특정 프로퍼티에 대해 readonly를 지정해 상수처럼 사용할 수 있다.
+
+```ts
+interface Shape {
+  p1: number[];
+  p2: number[];
+  area?: number;
+}
+
+let rectangle: Shape = {
+  p1: [10, 10],
+  p2: [20, 20],
+  area: 100,
+};
+
+let line: Shape = {
+  p1: [10, 10],
+  p2: [20, 20],
+};
+
+interface Point {
+  readonly x: number;
+  readonly y: number;
+}
+
+let p1: Point = {
+  x = 10,
+  y = 20,
+};
+
+p1.x = 100;
+// Cannot assign to 'x' because it is a read-only property.
 ```
