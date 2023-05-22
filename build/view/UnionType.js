@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class YenSorter {
+class UnionType {
     constructor(collection) {
         this.collection = collection;
     }
@@ -19,19 +19,22 @@ class YenSorter {
                         this.collection = characters.join("");
                     }
                 }
-                else {
+                // else {
+                if (this.collection instanceof Array) {
                     if (this.collection[j] > this.collection[j + 1]) {
                         const temp = this.collection[j];
                         this.collection[j] = this.collection[j + 1];
                         this.collection[j + 1] = temp;
                     }
+                    // }
                 }
             }
         }
         return this.collection;
     }
 }
-exports.default = YenSorter;
+exports.default = UnionType;
+// 3가지 방법 typeof, 사용자 정의, instanceof
 // 사용자 정의 타입가드
 let data;
 function isString(data) {
