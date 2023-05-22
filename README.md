@@ -380,3 +380,48 @@ const code: LanguageCode = LanguageCode.korean;
 //리버스 맵핑 ?? 일반적으로 키를 통해서 값을 가져오지만, 이넘은 값을 통해서 키를 가져올 수 있음.
 // const enum 의 경우 리버스 맵핑 즉, 값을 통한 키를 찾을 수 없다.
 ```
+
+## Union Type
+
+- TypeScript는 타입들의 조합을 통해 새로운 타입을 정의할 수 있으며 Union Type도 그중 하나이다.
+- Union Type은 타입 선언에 하나 이상의 타입을 지정하고 해당 타입 중에 하나일 수 있음을 나타낸다.
+- Union Type의 정의는 | 연산자를 이용해 정의한다.
+- Union Type의 멤버 사용은 정의된 모든 타입의 공통적인 멤버들만 사용할 수 있다.
+
+```ts
+interface Rectangle{
+  area:number;
+  color:string;
+  drawing():void
+}
+interface Line{
+  length:number;
+  color:string;
+  drawing():void
+}
+
+print(shape:Rectangle|Line){
+  shape.color
+  shape.drawing()
+
+  //공통되지 않는 area나 length는 사용할 수 없음.
+}
+```
+
+## Type Guard
+
+- Type Guard는 특정 영역(블록) 안에서 해당 변수의 타입을 한정시켜주는 기능이다.
+- Union Type의 정의는 각 타입이 갖는 고유멤버는 사용할 수 없다.
+- 특정 영역에서 각 타입이 갖는 고윺 멤버에 대한 사용은 Type Gyard룰 이용한다.
+- Type Guard는 사용자가 정의 하거나 number,string,boolean,Symbol의 경우 typeof 연산자를 이용한다.
+
+```ts
+let collection: number[] | string;
+collection = "TypeScript";
+// collection.split('')은 사용할 수 없음. number[]일 수도 있으니까.
+
+//typeof 연산자를 이용해 사용 가능.
+if (typeof collection === string) {
+  collection.split("");
+}
+```
