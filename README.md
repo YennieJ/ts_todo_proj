@@ -497,3 +497,50 @@ let p1: Point = {
 p1.x = 100;
 // Cannot assign to 'x' because it is a read-only property.
 ```
+
+## Interface와 class
+
+- 클래스는 implements 키워드를 통해 인터페이스를 구현할 수 있다.
+- 인터페이스를 구현한 클래스를 인터페이스에 정읟된 추상메소드를 구현해야 한다.
+- 하나의 클래스는 다수의 인터페이스를 구현 할 수 있으며 인터페이스간 확장도 가능하다.
+- 특정 인터페이스에서 정의한 프로퍼티나 메서드를 갖고 있는 클래스는 해당 인터페이스를 구현한 것으로 인정하며 이를 덕타이핑 이라고 한다.
+
+```ts
+interface IBHavior {
+  play(): void;
+}
+
+class Soccer implements IBHavior {
+  play() {
+    console.log("Play Soccer");
+  }
+}
+
+class Guitar implements IBHavior {
+  play() {
+    console.log("Play the guitar");
+  }
+}
+
+let bhavior = new Guitar();
+bhavior.play(); //Play the guitar
+bhavior = new Soccer();
+bhavior.play(); //Play Soccer
+
+interface Drawable {
+  drawing(): void;
+}
+
+interface Sortable {
+  sortin(): void;
+}
+
+class Canvas implements Drawable, Sortalbe {
+  drawing() {
+    console.log("Drawing...");
+  }
+  sorting() {
+    console.log("Sorting...");
+  }
+}
+```
