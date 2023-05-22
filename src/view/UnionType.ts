@@ -1,4 +1,4 @@
-class YenSorter {
+class UnionType {
   constructor(private collection: number[] | string) {}
 
   sort(): number[] | string {
@@ -35,7 +35,7 @@ class YenSorter {
   }
 }
 
-export default YenSorter;
+export default UnionType;
 
 // 3가지 방법 typeof, 사용자 정의, instanceof
 

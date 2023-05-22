@@ -4,11 +4,11 @@
 
 // todoConsole.promptUser();
 
-import YenSorter from "./view/UnionType";
+import UnionType from "./view/UnionType";
 
-const sorter = new YenSorter([10, -7, 22, 3, 15]);
+const sorter = new UnionType([10, -7, 22, 3, 15]);
 
 console.log(sorter.sort());
 
-const sorterStr = new YenSorter("Typescript");
+const sorterStr = new UnionType("Typescript");
 console.log(sorterStr.sort());
